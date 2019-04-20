@@ -1,0 +1,20 @@
+{
+    "name": "yichenthink/think-utils",
+    "description": "utils package for thinkphp5",
+    "authors": [
+        {
+            "name": "yichen",
+            "email": "2782268022@qq.com"
+        }
+    ],
+    "license": "Apache-2.0",
+    "require": {
+    "php": ">=5.6.0",
+    "topthink/framework": "5.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "yichenthink\\utils\\": "library/"
+        }
+    }
+}
