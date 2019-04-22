@@ -2,7 +2,7 @@
 namespace yichenthink\utils;
 
 /**
- * url处理
+ * sql语句过滤处理
  */
 class SqlHandle {
 /**

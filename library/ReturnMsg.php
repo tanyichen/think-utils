@@ -1,8 +1,6 @@
 <?php
 namespace yichenthink\utils;
 
-// use think\Model;
-
 class ReturnMsg {
 	public static $type = 'json';
 	/**

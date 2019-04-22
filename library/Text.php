@@ -2,7 +2,7 @@
 namespace yichenthink\utils;
 
 /**
- * url处理
+ * text处理
  */
 class Text {
 

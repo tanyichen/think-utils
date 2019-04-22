@@ -2,7 +2,7 @@
 namespace yichenthink\utils;
 
 /**
- * url处理
+ * file处理
  */
 class File {
 	// 把数组写入文件

@@ -1,12 +1,8 @@
 <?php
 namespace yichenthink\utils;
 
-// use think\Model;
-// use app\common\utils\Send as SendUtils;
-// use think\Validate;
-
 /**
- * 生成token参数验证器
+ * 查询检查参数
  */
 class Check {
 
