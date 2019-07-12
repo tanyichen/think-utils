@@ -1,6 +1,8 @@
 <?php
 namespace yichenthink\utils;
 
+// http返回数组格式化
+
 class ReturnMsg {
 	public static $type = 'json';
 	/**

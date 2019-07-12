@@ -2,7 +2,7 @@
 namespace yichenthink\utils;
 
 /**
- * 查询检查参数
+ * 检查器
  */
 class Check {
 

@@ -1,7 +1,9 @@
 <?php
 namespace yichenthink\utils;
 use think\facade\Config;
+use think\facade\Session;
 
+// id生成工具
 class MakeId {
 	public static $serverId = 10; //服务器id数字;
 	public static $error = ''; //失败信息

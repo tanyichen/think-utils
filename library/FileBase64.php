@@ -114,8 +114,13 @@ class FileBase64 {
 			$filename = $this->getRootPath() . $url;
 			!file_exists($filename) or unlink($filename); //删除旧裁剪图片
 		}
+		// if (file_exists($filename)) {
+		// 	$info = '原头像删除成功';
+		// 	unlink($filename) or $info = '删除失败,请检查文件是否存在';
+		// } else {
+		// 	$info = '原头像没找到:' . $filename;
+		// }
 	}
-
 	public function savefile($file = null, $dirname = null, $filename = null) {
 		if (!empty($file)) {
 			!empty($filename) or $filename = $this->makeFileName();

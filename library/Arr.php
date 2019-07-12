@@ -2,7 +2,7 @@
 namespace yichenthink\utils;
 
 /**
- * arr数组处理
+ * 数组处理
  */
 class Arr {
 
