@@ -6,9 +6,6 @@ namespace yichenthink\utils;
  */
 class Request {
 
-	function __construct() {
-		# code...
-	}
 /**
  * 发送HTTP请求方法，目前只支持CURL发送请求
  * @param  string $url    请求URL

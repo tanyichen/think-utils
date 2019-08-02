@@ -36,7 +36,7 @@ class MakeId {
 	public static function Number() {
 		$code = time() . rand(1000, 4);
 
-		return self::serverId() . $code;
+		return $code;
 	}
 	public static function serverId() {
 		if (self::$serverId) {
