@@ -8,7 +8,26 @@ class ReturnMsg {
 	/**
 	 * 返回成功
 	 */
-	public static function returnMsg($code = 200, $message = '', $data = [], $header = []) {
+	public static function returnMsg($coder = 200, $message = '', $data = [], $header = []) {
+
+		switch (gettype($coder)) {
+		case 'array':
+			$code = $coder[0];
+			$response_code = $coder[1] ?? 200;
+			# code...
+			break;
+		case 'object':
+			$code = $coder['code'];
+			$response_code = $coder['status'] ?? 200;
+			# code...
+			break;
+
+		default:
+			$code = $coder;
+			$response_code = $code;
+			# code...
+			break;
+		}
 
 		if (empty($message)) {
 			// $Send = new Send();
@@ -19,14 +38,14 @@ class ReturnMsg {
 				$message = "未知";
 			}
 		}
-		$return['code'] = (int) $code;
+		$return['code'] = $code;
 		$return['message'] = $message;
 		if (is_array($data) || is_object($data)) {
 			$return['data'] = $data;
 		} else {
 			$return['data'] = ['info' => $data];
 		}
-		http_response_code($code); //设置返回头部状态码 一般成功响应返回了数据都是200
+		http_response_code($response_code); //设置返回头部状态码 一般成功响应返回了数据都是200
 		// 发送头部信息
 		foreach ($header as $name => $val) {
 			if (is_null($val)) {
