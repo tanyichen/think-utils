@@ -49,4 +49,99 @@ class Arr {
 
 		return $tree;
 	}
+
+	// 根据数组1的值作为数组2的key，返回新数组
+
+	public function only($arr1, $arr2) {
+
+		$arr = [];
+
+		switch (gettype($arr2)) {
+		case 'array':
+			foreach ($arr1 as $key => $value) {
+				if (isset($arr2[$value])) {
+					$arr[$value] = $arr2[$value];
+				}
+			}
+			# code...
+			break;
+		case 'object':
+			foreach ($arr1 as $key => $value) {
+				if (isset($arr2->$value)) {
+					$arr[$value] = $arr2->$value;
+				}
+			}
+			# code...
+			break;
+		default:
+			# code...
+			break;
+		}
+
+		return $arr;
+	}
+
+	// 多维数组差值支持对象
+	public function array_diff1($arr_1, $arr_2) {
+		$type2 = gettype($arr_2);
+		$type1 = gettype($arr_1);
+
+		switch ($type2) {
+		case 'array':
+			foreach ($arr_1 as $key => $val) {
+
+				switch ($type1) {
+				case 'array':
+					if (isset($arr_2[$key]) && $arr_2[$key] == $val) {
+						unset($arr_1[$key]);
+					}
+					# code...
+					break;
+				case 'object':
+					if (isset($arr_2[$key]) && $arr_2[$key] == $val) {
+						unset($arr_1->$key);
+					}
+					# code...
+					break;
+
+				default:
+					# code...
+					break;
+				}
+
+			}
+			# code...
+			break;
+		case 'object':
+			switch ($type1) {
+			case 'array':
+				foreach ($arr_1 as $key => $val) {
+
+					if (isset($arr_2->$key) && $arr_2->$key == $arr_1[$key]) {
+						unset($arr_1[$key]);
+					}
+
+				}
+				break;
+			case 'object':
+				if (isset($arr_2->$key) && $arr_2->$key == $val) {
+					unset($arr_1->$key);
+				}
+				# code...
+				break;
+
+			default:
+				# code...
+				break;
+			}
+			# code...
+			break;
+		default:
+			# code...
+			break;
+		}
+
+		return $arr_1;
+	}
+
 }

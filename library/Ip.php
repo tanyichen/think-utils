@@ -5,11 +5,10 @@ namespace yichenthink\utils;
  * ip地址
  */
 class Ip {
-
 /**
  *获取ip
  */
-	function getip() {
+	static public function getIp() {
 		static $realip;
 		if (isset($_SERVER)) {
 			if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -35,7 +34,7 @@ class Ip {
  * 淘宝IP接口
  * @Return: array
  */
-	function getCity($ip = '') {
+	static public function getCity($ip = '') {
 		$url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip;
 		$ip = json_decode(file_get_contents($url));
 		if ((string) $ip->code == '1') {

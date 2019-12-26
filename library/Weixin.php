@@ -54,6 +54,9 @@ class Weixin {
 
 		return $data;
 	}
+	public function getUserInfo($value = '') {
+		# code...
+	}
 /**
  * 微信信息解密
  * @param  string  $appid  小程序id

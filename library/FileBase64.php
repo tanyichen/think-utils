@@ -23,7 +23,7 @@ class FileBase64 {
 
 	// 匹配base64类型后缀，base64前缀等；
 	public function getBase64Info($base64) {
-		if (strpos($base64, 'base64') !== false) {
+		if (strpos($base64, ';base64') !== false) {
 			//匹配出图片的后缀
 			if (preg_match('/^data:((\w+)\/(\w+));base64,/', $base64, $base64Info)) {
 				try {

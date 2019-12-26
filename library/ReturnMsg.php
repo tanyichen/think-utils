@@ -24,7 +24,7 @@ class ReturnMsg {
 
 		default:
 			$code = $coder;
-			$response_code = $code;
+			$response_code = 200;
 			# code...
 			break;
 		}
