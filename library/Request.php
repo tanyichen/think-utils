@@ -14,15 +14,20 @@ class Request {
  * @return array  $data   响应数据
  */
 	public function http($url, $params = ["apc" => 123], $method = 'GET', $header = array(), $multi = false) {
+	    
 		$opts = array(CURLOPT_TIMEOUT => 30, CURLOPT_RETURNTRANSFER => 1, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => false, CURLOPT_HTTPHEADER => $header);
 
 		/* 根据请求类型设置特定参数 */
 		switch (strtoupper($method)) {
 		case 'GET':
 			$opts[CURLOPT_URL] = $url . '&' . http_build_query($params);
+			
 			// dump($opts[CURLOPT_URL]);
 			break;
 		case 'POST':
+		    if (!$multi) {
+			    return $this->Post($url,$params);
+		    }
 			//判断是否传输文件
 			$params = $multi ? $params : http_build_query($params);
 			$opts[CURLOPT_URL] = $url;
@@ -30,12 +35,14 @@ class Request {
 			// dump($opts[CURLOPT_URL]);
 			$opts[CURLOPT_POST] = 1;
 			$opts[CURLOPT_POSTFIELDS] = $params;
+			
+			
 			break;
 		default:
 			throw new Exception('不支持的请求方式！');
 		}
-
-		$postdata = http_build_query($params);
+        $postdata=$params;
+// 		$postdata = http_build_query($params);
 		$options = array(
 			'http' => array(
 				'method' => 'GET',
@@ -61,4 +68,28 @@ class Request {
 		curl_close($curl);
 		return $resp;
 	}
+	
+	function Post($url, $data,$header=[])
+    {
+            $jsonStr=json_encode($data);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonStr);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json; charset=utf-8',
+                    'Content-Length: ' . strlen($jsonStr)
+                )
+            );
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            try {
+                return json_decode($response,true);
+            } catch (\Exception $e) {
+                
+            }
+            return $response;
+   }
 }
